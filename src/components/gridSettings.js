@@ -5,9 +5,10 @@ import { GridContext } from "../context/gridContext";
 const gridSettings = () => {
 
   const { gridSettingState, gridSettingStateDispatch } = useContext(GlobalContext);
-  const { gameStateDispatch } = useContext(GridContext);
+  const { gameStateDispatch, gameState } = useContext(GridContext);
 
   return (
+    <>
     <div className="form-panel">
       <form>
         <div className="form-group my-2">
@@ -120,7 +121,12 @@ const gridSettings = () => {
           </button>
         </div>
       </form>
+      <hr />
+      
+      <div>{gameState.generation > 0 ? 'Generation ' + gameState.generation : ''}</div>
+
     </div>
+    </>
   );
 };
 

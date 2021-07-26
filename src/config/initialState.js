@@ -1,11 +1,10 @@
 export default {
-    rows: 15,
-    columns: 15,
+    rows: 50,
+    columns: 50,
     max: 1000,
     isSquare: true,
-    zoom: 50,
+    zoom: 15,
     margin: 1,
     isStarted: false,
-    interval: 1000,
-    session: 1
+    interval: 1000
   };

@@ -32,7 +32,7 @@ const Grid = () => {
           return (
             <div key={row} className="flex-container" style={styleContainer}>
               {mathsUtils.range(1, columns).map((column) => {
-                let cellState = gameState[row][column];
+                let cellState = gameState.grid[row][column];
 
                 return (
                   <Cell

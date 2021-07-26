@@ -3,7 +3,7 @@ import cellUtil from "../../utils/cellUtil";
 const gameOfLife = (gameState, gridSettingState, gameStateDispatch) => {
   let arrTransformed = [];
 
-  gameState.filter((row) => {
+  gameState.grid.filter((row) => {
     row.filter((item) => {
       if (item) {
         let rowUp = item.row <= 1 ? gridSettingState.rows : item.row - 1;
@@ -25,7 +25,7 @@ const gameOfLife = (gameState, gridSettingState, gameStateDispatch) => {
         ];
 
         let activeNeighbours = neighbours.reduce((acc, searchItem) => {
-          return gameState[searchItem.row][searchItem.column].selected
+          return gameState.grid[searchItem.row][searchItem.column].selected
             ? acc + 1
             : acc;
         }, 0);
@@ -40,9 +40,10 @@ const gameOfLife = (gameState, gridSettingState, gameStateDispatch) => {
   });
 
   arrTransformed.filter((element) => {
-    gameState[element.row][element.column] = { ...element };
+    gameState.grid[element.row][element.column] = { ...element };
   });
 
+  gameState.generation = gameState.generation + 1;
   gameStateDispatch({ type: "set-state", value: gameState });
 
   function addCellToTransform(cellToAdd) {

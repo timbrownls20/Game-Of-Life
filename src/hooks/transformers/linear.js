@@ -3,11 +3,11 @@ import cellUtil from "../../utils/cellUtil";
 const linear = (gameState, gridSettingState, gameStateDispatch) => {
   let arrTransformed = [];
 
-  gameState.filter((row) => {
+  gameState.grid.filter((row) => {
     row.filter((item) => {
       if (item && item.selected) {
         let nextRow = item.row <= 1 ? gridSettingState.rows : item.row - 1;
-        let cellUp = gameState[nextRow][item.column];
+        let cellUp = gameState.grid[nextRow][item.column];
 
         addCellToTransform(cellUtil.selectCell(cellUp));
         addCellToTransform(cellUtil.deselectCell(item));
@@ -16,7 +16,7 @@ const linear = (gameState, gridSettingState, gameStateDispatch) => {
   });
 
   arrTransformed.filter((element) => {
-    gameState[element.row][element.column] = { ...element };
+    gameState.grid[element.row][element.column] = { ...element };
   });
 
   gameStateDispatch({ type: "set-state", value: gameState });

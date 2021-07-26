@@ -10,10 +10,10 @@ function useGridState() {
   const { gridSettingState } = useContext(GlobalContext);
 
   const GameReducer = (state, action) => {
-    let newState = [...state];
+    let newState = {...state};
 
     if (action.row) {
-      let cellState = state[action.row][action.column];
+      let cellState = state.grid[action.row][action.column];
       let newCellState = { ...cellState };
 
       switch (action.type) {
@@ -36,15 +36,14 @@ function useGridState() {
           break;
         default:
       }
-
-      newState[action.row][action.column] = newCellState;
+      newState.grid[action.row][action.column] = newCellState;
     } else {
       switch (action.type) {
         case "init":
           newState = getInitialGameState(gridSettingState.max);
           break;
         case "set-state":
-          newState = [...action.value];
+          newState = {...action.value};
           break;
         default:
       }
@@ -67,11 +66,16 @@ function useGridState() {
       });
     });
 
-    return gridStateInitial;
+    let gameStateInitial = {
+      grid:gridStateInitial,
+      generation: 0 
+    }
+
+    return gameStateInitial;
   };
 
   const getCellState = (row, column) => {
-    return gameState[row] && gameState[row] ? gameState[row][column] : {};
+    return gameState.grid[row] && gameState[row] ? gameState[row][column] : {};
   };
 
   const [gameState, gameStateDispatch] = useReducer(
