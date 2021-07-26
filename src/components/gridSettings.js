@@ -17,6 +17,7 @@ const gridSettings = () => {
             type="number"
             step="5"
             min="0"
+            max={gridSettingState.dimensionMax}
             className="form-control"
             placeholder="number of columns"
             value={gridSettingState.columns}
@@ -32,6 +33,7 @@ const gridSettings = () => {
             type="number"
             step="5"
             min="0"
+            max={gridSettingState.dimensionMax}
             className="form-control"
             placeholder="number of rows"
             value={gridSettingState.rows}
@@ -73,7 +75,7 @@ const gridSettings = () => {
           <small className="mx-2">interval</small>
           <input
             type="number"
-            min="100"
+            min="1"
             step="5"
             className="form-control"
             placeholder="interval (ms)"

@@ -40,7 +40,7 @@ function useGridState() {
     } else {
       switch (action.type) {
         case "init":
-          newState = getInitialGameState(gridSettingState.max);
+          newState = getInitialGameState(gridSettingState.dimensionMax);
           break;
         case "set-state":
           newState = {...action.value};
@@ -80,7 +80,7 @@ function useGridState() {
 
   const [gameState, gameStateDispatch] = useReducer(
     GameReducer,
-    getInitialGameState(gridSettingState.max)
+    getInitialGameState(gridSettingState.dimensionMax)
   );
 
   const randomTransformer = () => random(gridSettingState, gameStateDispatch);
