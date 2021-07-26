@@ -24,8 +24,8 @@ function useAppState(initialState) {
         return { ...state, interval: action.value };
       case "toggle-start":
         return { ...state, isStarted: !state.isStarted };
-      case "increment-session":
-        return { ...state, session: state.session + 1 };
+      case "reset":
+        return { ...state, session: state.session + 1, isStarted: false };
       default:
         return {...state};
     }

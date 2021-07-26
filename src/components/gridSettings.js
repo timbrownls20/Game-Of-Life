@@ -113,7 +113,7 @@ const gridSettings = () => {
             type="button"
             className="btn btn-primary mx-2"
             onClick={() => {
-              gridSettingStateDispatch({ type: "increment-session" });
+              gridSettingStateDispatch({ type: "reset" });
               gameStateDispatch({ type: "init" });
             }}
           >
